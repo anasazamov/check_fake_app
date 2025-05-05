@@ -17,7 +17,7 @@ class Device(models.Model):
 class MTT(models.Model):
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    username = models.CharField(max_length=250, unique=True)
+    username = models.CharField(max_length=250)
     password = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

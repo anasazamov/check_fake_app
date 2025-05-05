@@ -14,7 +14,7 @@ class DeviceAdmin(admin.ModelAdmin):
 @admin.register(MTT)
 class MTTAdmin(admin.ModelAdmin):
     list_display = ('license', 'username', 'password', 'created_at', 'updated_at')
-    search_fields = ('license',)
+    search_fields = ('username',)
     list_filter = ['device']
     ordering = ('-created_at',)
     list_per_page = 20
