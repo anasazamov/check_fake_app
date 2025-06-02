@@ -70,7 +70,11 @@ def check_token(request: HttpRequest) -> JsonResponse:
         if not device.exists():
             return JsonResponse({'status': False})
 
-        mtt, created = MTT.objects.get_or_create(username=username, password=password, device=device.first())
+        try:
+            mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
+        except MultipleObjectsReturned:
+            mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
+            print(mtt.device.license)
         
         token = Token.objects.filter(mtt=mtt).first()
         if token:
