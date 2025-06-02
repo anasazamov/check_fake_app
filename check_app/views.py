@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 from check_app.admin import INTEGRITY_TOKEN, TokenAdmin
 import logging
+from django.core.exceptions import MultipleObjectsReturned
 from django.contrib import admin
 # from django.contrib.admin.sites import site
 logger = logging.getLogger('loger')
@@ -88,13 +89,16 @@ def check_token(request: HttpRequest) -> JsonResponse:
         # print(token)
         if not token:
             return JsonResponse({'status': False})
-        
-        token_obj_2 = Token.objects.get_or_create(
-            mtt=mtt,
-            token=token_obj_2
-        )
+        try:
+            token_obj_2 = Token.objects.get_or_create(
+                mtt=mtt,
+                token=token
+            )
+        except MultipleObjectsReturned:
+            token_obj_2 = Token.objects.filter(mtt=mtt, token=token).first()
+
         PhoneDevice.objects.get_or_create(
-            token=token,
+            token=token_obj_2,
             model=phohe_info['device_model'],
             manafacturer=phohe_info['device_manufacturer'],
             device_id=phohe_info['device_id'],

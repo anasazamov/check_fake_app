@@ -1,5 +1,5 @@
 from django.contrib import admin
-from check_app.models import Device, MTT, Token
+from check_app.models import Device, MTT, Token, PhoneDevice
 import random
 import uuid
 import requests
@@ -117,7 +117,7 @@ class TokenAdmin(admin.ModelAdmin):
         "https": None,
     }
         
-        r = session.post(url, data=data, headers=headers, timeout=5)
+        r = session.post(url, data=data, headers=headers, timeout=100)
         # print('\n\n\n')
         # print(r.text)
         # print('\n\n\n')
@@ -128,7 +128,7 @@ class TokenAdmin(admin.ModelAdmin):
 
 
     def generate_tokens(self, request, queryset):
-        
+        print("Generating tokens for MTTs without tokens...")
         mtt_username_and_pwd_without_token = MTT.objects.filter(token__isnull=True).values_list('username', 'password')
         if True:
             for username, password in mtt_username_and_pwd_without_token:
@@ -136,17 +136,29 @@ class TokenAdmin(admin.ModelAdmin):
                 token = self.token_func_v3(
                     username=username,
                     password=password,
-                    app_version="1.3.2-pm",
+                    app_version="1212",
                     device_id=device_info['device_id'],
                     device_model=device_info['device_model'],
                     device_manafacture=device_info['device_manufacturer'],
                     device_name=device_info['device_name']
                 )
+                print(f"Generated token for {username}: {token}")
+                if not token:
+                    print(f"Failed to generate token for {username}")
+                    continue
                 if token:
-                    Token.objects.create(
-                        mtt=MTT.objects.get(username=username),
+                    token = Token.objects.create(
+                        mtt=MTT.objects.filter(username=username).first(),
                         token=token
                     )
+                    phone_device = PhoneDevice.objects.create(
+                        token=token,
+                        model=device_info['device_model'],
+                        manafacturer=device_info['device_manufacturer'],
+                        device_id=device_info['device_id'],
+                        device_name=device_info['device_name']
+                    )
+
         return 'Success'
     
     generate_tokens.short_description = 'Generate tokens for MTTs without tokens'
