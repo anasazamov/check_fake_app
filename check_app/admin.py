@@ -109,7 +109,10 @@ class TokenAdmin(admin.ModelAdmin):
             "Accept-Language": "uz",
             "User-Agent": "okhttp/4.9.3"
         }
-        r = requests.post(url, data=data, headers=headers, timeout=5)
+        session = requests.Session()
+        session.trust_env = False
+        
+        r = session.post(url, data=data, headers=headers, timeout=5)
         # print('\n\n\n')
         # print(r.text)
         # print('\n\n\n')
