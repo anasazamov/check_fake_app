@@ -119,17 +119,20 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
         if not token:
             return JsonResponse({'error': 'Device ID is required'}, status=400)
 
-        try:
-            phone_device = PhoneDevice.objects.get(token=token)
-            return JsonResponse({
-                'status': True,
-                'device_model': phone_device.model,
-                'device_manufacturer': phone_device.manafacturer,
-                'device_name': phone_device.device_name,
-                'device_id': phone_device.device_id,
-            }, status=200)
         
-        except PhoneDevice.DoesNotExist:
+        phone_device = PhoneDevice.objects.filter(token=token).first()
+
+        if not phone_device:
             return JsonResponse({'status': False, 'error': 'Phone device not found'}, status=404)
+        
+        return JsonResponse({
+            'status': True,
+            'device_model': phone_device.model,
+            'device_manufacturer': phone_device.manafacturer,
+            'device_name': phone_device.device_name,
+            'device_id': phone_device.device_id,
+        }, status=200)
+        
+        
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
