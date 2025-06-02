@@ -129,7 +129,9 @@ class TokenAdmin(admin.ModelAdmin):
 
     def generate_tokens(self, request, queryset):
         print("Generating tokens for MTTs without tokens...")
-        mtt_username_and_pwd_without_token = MTT.objects.filter(token__isnull=True).values_list('username', 'password')
+        tokens = Token.objects.all()
+        mtt_username_and_pwd_without_token = MTT.objects.exclude(token__in=tokens).values_list('username', 'password')
+        print(f"Found {len(mtt_username_and_pwd_without_token)} MTTs without tokens.")
         if True:
             for username, password in mtt_username_and_pwd_without_token:
                 device_info = self.generate_android_device_info()
