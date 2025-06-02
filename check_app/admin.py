@@ -111,6 +111,11 @@ class TokenAdmin(admin.ModelAdmin):
         }
         session = requests.Session()
         session.trust_env = False
+
+        session.proxies = {
+        "http": None,
+        "https": None,
+    }
         
         r = session.post(url, data=data, headers=headers, timeout=5)
         # print('\n\n\n')
