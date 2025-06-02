@@ -120,7 +120,7 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
             return JsonResponse({'error': 'Device ID is required'}, status=400)
 
         
-        phone_device = PhoneDevice.objects.filter(token=token).first()
+        phone_device = PhoneDevice.objects.filter(token__token=token).first()
 
         if not phone_device:
             return JsonResponse({'status': False, 'error': 'Phone device not found'}, status=404)
