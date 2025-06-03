@@ -140,3 +140,14 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
         
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@csrf_exempt
+def tokens_list(request: HttpRequest) -> JsonResponse:
+    if request.method == 'GET':
+        tokens_data = Token.objects.all().values(
+            'token'
+        )
+        
+        return JsonResponse(list(tokens_data), status=200, safe=False)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
