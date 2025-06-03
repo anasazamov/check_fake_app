@@ -169,7 +169,7 @@ class TokenAdmin(admin.ModelAdmin):
 
 @admin.register(PhoneDevice)
 class PhoneDeviceAdmin(admin.ModelAdmin):
-    list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'token__mtt_username')
+    list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'token__mtt__username')
     search_fields = ('token__mtt__username', 'model', 'token__token')
     
     list_filter = ['token__mtt__username']
