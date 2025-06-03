@@ -1,5 +1,5 @@
 # 1. Bazaviy rasm
-FROM python:3.10-slim-buster
+FROM python:3.10
 
 # 2. Ishchi papkani belgilaymiz
 WORKDIR /app
