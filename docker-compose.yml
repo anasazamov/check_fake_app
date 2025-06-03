@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: check_fake_app_web
+    ports:
+      - "8010:8010"
+    volumes:
+      # Mahalliy kod o‘zgarganda konteyner ichida ham avtomatik yangilanishi uchun:
+      - ./:/app
+    environment:
+
+      - PYTHONUNBUFFERED=1
+      - UVICORN_RELOAD=true
+
