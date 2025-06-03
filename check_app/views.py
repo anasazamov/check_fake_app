@@ -94,7 +94,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
         if not token:
             return JsonResponse({'status': False})
         try:
-            token_obj_2 = Token.objects.get_or_create(
+            token_obj_2, _ = Token.objects.get_or_create(
                 mtt=mtt,
                 token=token
             )
