@@ -173,7 +173,7 @@ class PhoneDeviceAdmin(admin.ModelAdmin):
     search_fields = ('token__mtt__username', 'model', 'token__token')
     
     list_filter = ['token__mtt__username']
-    ordering = ('-created_at',)
+    # ordering = ('-created_at',)
     list_per_page = 20
 
     def mtt(self, obj: PhoneDevice):
