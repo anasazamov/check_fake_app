@@ -78,7 +78,20 @@ def check_token(request: HttpRequest) -> JsonResponse:
         
         token = Token.objects.filter(mtt=mtt).first()
         if token:
+            phohe_info = PhoneDevice.objects.filter(token__token=token)
+            if not phohe_info.exists():
+                token_obj = TokenAdmin(Token, admin.site)
+                phohe_info = token_obj.generate_android_device_info()
+                PhoneDevice.objects.get_or_create(
+                    token=token,
+                    model=phohe_info['device_model'],
+                    manafacturer=phohe_info['device_manufacturer'],
+                    device_id=phohe_info['device_id'],
+                    device_name=phohe_info['device_name']
+                )
+
             return JsonResponse({'status': True, 'token': token.token})
+        
         token_obj = TokenAdmin(Token, admin.site)
         phohe_info = token_obj.generate_android_device_info()
         token = token_obj.token_func_v3(
@@ -90,6 +103,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
             device_manafacture=phohe_info['device_manufacturer'],
             device_name=phohe_info['device_name']
         )
+
         # print(token)
         if not token:
             return JsonResponse({'status': False})
