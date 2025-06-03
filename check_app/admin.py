@@ -169,12 +169,15 @@ class TokenAdmin(admin.ModelAdmin):
 
 @admin.register(PhoneDevice)
 class PhoneDeviceAdmin(admin.ModelAdmin):
-    list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'token__mtt__username')
+    list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'mtt')
     search_fields = ('token__mtt__username', 'model', 'token__token')
     
     list_filter = ['token__mtt__username']
     ordering = ('-created_at',)
     list_per_page = 20
+
+    def mtt(self, obj: PhoneDevice):
+        return obj.token.mtt.username if obj.token and obj.token.mtt else 'No MTT'
 
     def token(self, obj: PhoneDevice):
         return obj.token.mtt.username
