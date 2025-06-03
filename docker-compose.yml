@@ -5,14 +5,33 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: check_fake_app_web
+    container_name: django_app_web
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8010"
     ports:
-      - "8010:8010"
+      - "8000:8000"
     volumes:
-      # Mahalliy kod o‘zgarganda konteyner ichida ham avtomatik yangilanishi uchun:
       - ./:/app
     environment:
-
       - PYTHONUNBUFFERED=1
-      - UVICORN_RELOAD=true
+      - DJANGO_DEBUG=True
+      # Agar .env fayl ishlatilsa, quyidagicha yozing:
+      # env_file:
+      #   - .env
+#     depends_on:
+#       - db
 
+#   db:
+#     image: postgres:14
+#     container_name: django_app_db
+#     restart: unless-stopped
+#     environment:
+#       POSTGRES_USER: django_user
+#       POSTGRES_PASSWORD: django_password
+#       POSTGRES_DB: django_db
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
