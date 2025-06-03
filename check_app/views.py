@@ -135,8 +135,9 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
     if request.method == 'POST':
         token = request.POST.get('token')
         if not token:
-            return JsonResponse({'error': 'Device ID is required'}, status=400)
+            return JsonResponse({'error': 'token is required'}, status=400)
 
+        token = token.strip()
         
         phone_device = PhoneDevice.objects.filter(token__token=token).first()
 
