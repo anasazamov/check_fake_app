@@ -165,3 +165,17 @@ class TokenAdmin(admin.ModelAdmin):
     
     generate_tokens.short_description = 'Generate tokens for MTTs without tokens'
     actions = ['generate_tokens']
+
+
+@admin.register(PhoneDevice)
+class PhoneDeviceAdmin(admin.ModelAdmin):
+    list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'created_at', 'updated_at')
+    search_fields = ('token__mtt__username', 'model', 'token__token')
+    
+    list_filter = ['token__mtt__username']
+    ordering = ('-created_at',)
+    list_per_page = 20
+
+    def token(self, obj: PhoneDevice):
+        return obj.token.mtt.username
+    token.short_description = 'MTT Username'
