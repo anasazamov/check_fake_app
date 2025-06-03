@@ -8,9 +8,8 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        build-essential \
-       libpq-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install --upgrade pip
+       sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
 
 # 4. requirements.txt ni konteynerga nusxa qilish va paketlarni o‘rnatish
 COPY requirements.txt .
