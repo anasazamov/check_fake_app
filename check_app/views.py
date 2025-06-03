@@ -65,16 +65,16 @@ def check_token(request: HttpRequest) -> JsonResponse:
         # print(request.POST)
         if not (license and username and password):
             return JsonResponse({'status': False})
-        print(license)
+        # print(license)
         device = Device.objects.filter(license=license)
         if not device.exists():
             return JsonResponse({'status': False})
 
         try:
-            mtt = MTT.objects.get_or_create(username=username, password=password, device=device.first())
+            mtt, _ = MTT.objects.get_or_create(username=username, password=password, device=device.first())
         except MultipleObjectsReturned:
             mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
-            print(mtt.device.license)
+            # print(mtt.device.license)
         
         token = Token.objects.filter(mtt=mtt).first()
         if token:
