@@ -1,5 +1,5 @@
 # 1. Bazaviy rasm
-FROM python:3.10
+FROM python:3.10-slim-bullseye
 
 # 2. Ishchi papkani belgilaymiz
 WORKDIR /app
@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        build-essential \
        sqlite3 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/
 
 # 4. requirements.txt ni konteynerga nusxa qilish va paketlarni o‘rnatish
 COPY requirements.txt .
