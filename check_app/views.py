@@ -71,7 +71,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
             return JsonResponse({'status': False})
 
         try:
-            mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
+            mtt = MTT.objects.get_or_create(username=username, password=password, device=device.first())
         except MultipleObjectsReturned:
             mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
             print(mtt.device.license)
