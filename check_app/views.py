@@ -76,7 +76,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
             mtt = MTT.objects.filter(username=username, password=password, token__isnull=False).first()
             # print(mtt.device.license)
         
-        token = Token.objects.filter(mtt=mtt).first()
+        token = Token.objects.filter(mtt__username=username, mtt__password=password).order_by('created_at').first()
         if token:
             phohe_info = PhoneDevice.objects.filter(token__token=token)
             if not phohe_info.exists():
@@ -113,7 +113,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
                 token=token
             )
         except MultipleObjectsReturned:
-            token_obj_2 = Token.objects.filter(mtt=mtt, token=token).first()
+            token_obj_2 = Token.objects.filter(mtt__username=username, mtt__password=password).order_by('created_at').first()
 
         PhoneDevice.objects.get_or_create(
             token=token_obj_2,
@@ -126,7 +126,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
         if token:
             return JsonResponse({'status': True, 'token': token})
 
-        return JsonResponse({'status': False})
+        return JsonResponse({'status': False}, status=404)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
@@ -138,7 +138,7 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
             return JsonResponse({'error': 'token is required'}, status=400)
 
         token = token.strip()
-        
+
         phone_device = PhoneDevice.objects.filter(token__token=token).first()
 
         if not phone_device:
