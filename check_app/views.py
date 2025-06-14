@@ -11,6 +11,7 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.contrib import admin
 # from django.contrib.admin.sites import site
 logger = logging.getLogger('loger')
+from datetime import datetime
 
 # Create your views here.
 
@@ -47,7 +48,11 @@ def check_limit(request: HttpRequest) -> JsonResponse:
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        MTT.objects.get_or_create(username=username, password=password, device=device.first())
+        mtt, created = MTT.objects.get_or_create(username=username, password=password, device=device.first()) 
+        if not created:
+            # If MTT already exists, check if the token is valid
+            mtt.updated_at = datetime.now()
+            mtt.save()
 
         count = MTT.objects.filter(device=device.first()).count()
         if count <= device.first().limit:
