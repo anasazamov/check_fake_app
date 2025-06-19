@@ -122,7 +122,12 @@ class TokenAdmin(admin.ModelAdmin):
         # print(r.text)
         # print('\n\n\n')
         if r.status_code != 200:
+            mtt = MTT.objects.filter(username=username, password=password)
+            
+            if mtt:
+                mtt.delete()
             return None
+        
         return r.json()['access_token']
     
 
