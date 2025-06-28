@@ -100,7 +100,7 @@ class TokenAdmin(admin.ModelAdmin):
             "integrity-token": INTEGRITY_TOKEN,
             "X-App-Source": "PlayMarket",
             "App-Version-Code": app_version,
-            "App-Version-Name": "1.3.2-pm",
+            "App-Version-Name": "1.4.2-pm",
             "Device-Id": device_id,
             "Device-Name": device_name,
             "Device-Manufacturer": device_manafacture,
@@ -143,7 +143,7 @@ class TokenAdmin(admin.ModelAdmin):
                 token = self.token_func_v3(
                     username=username,
                     password=password,
-                    app_version="1212",
+                    app_version="1222",
                     device_id=device_info['device_id'],
                     device_model=device_info['device_model'],
                     device_manafacture=device_info['device_manufacturer'],

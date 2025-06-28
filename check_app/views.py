@@ -102,7 +102,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
         token = token_obj.token_func_v3(
             username=username,
             password=password,
-            app_version="1212",
+            app_version="1222",
             device_id=phohe_info['device_id'],
             device_model=phohe_info['device_model'],
             device_manafacture=phohe_info['device_manufacturer'],
