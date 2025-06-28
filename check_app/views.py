@@ -69,7 +69,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
         password = request.POST.get('password')
         # print(request.POST)
         if not (license and username and password):
-            return JsonResponse({'status': False})
+            return JsonResponse({'status': False},status=400)
         # print(license)
         device = Device.objects.filter(license=license)
         if not device.exists():
@@ -82,6 +82,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
             # print(mtt.device.license)
         
         token = Token.objects.filter(mtt__username=username, mtt__password=password).order_by('created_at').first()
+        
         if token:
             phohe_info = PhoneDevice.objects.filter(token__token=token)
             if not phohe_info.exists():
@@ -111,7 +112,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
 
         # print(token)
         if not token:
-            return JsonResponse({'status': False})
+            return JsonResponse({'status': False}, status=401)
         try:
             token_obj_2, _ = Token.objects.get_or_create(
                 mtt=mtt,
