@@ -175,7 +175,7 @@ class TokenAdmin(admin.ModelAdmin):
 @admin.register(PhoneDevice)
 class PhoneDeviceAdmin(admin.ModelAdmin):
     list_display = ('model', 'manafacturer', 'device_id', 'device_name', 'mtt')
-    search_fields = ('token__mtt__username', 'model', 'token__token')
+    search_fields = ('token__mtt__username', 'model', 'token__token', 'manafacturer', 'device_id', 'device_name')
     
     list_filter = ['token__mtt__username']
     # ordering = ('-created_at',)
