@@ -53,3 +53,17 @@ class PhoneDevice(models.Model):
         verbose_name_plural = 'Phone Devices'
         ordering = ['-token__created_at']
         unique_together = ('token', 'device_id')
+
+
+class PlayIntegrityToken(models.Model):
+    token = models.CharField(max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.token
+
+    class Meta:
+        verbose_name = 'Play Integrity Token'
+        verbose_name_plural = 'Play Integrity Tokens'
+        ordering = ['-created_at']

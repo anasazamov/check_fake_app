@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from check_app.models import Device, MTT, Token, PhoneDevice
+from check_app.models import Device, MTT, Token, PhoneDevice, PlayIntegrityToken
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 from check_app.admin import INTEGRITY_TOKEN, TokenAdmin
@@ -12,6 +12,7 @@ from django.contrib import admin
 # from django.contrib.admin.sites import site
 logger = logging.getLogger('loger')
 from datetime import datetime
+import random
 
 # Create your views here.
 
@@ -93,7 +94,8 @@ def check_token(request: HttpRequest) -> JsonResponse:
                     model=phohe_info['device_model'],
                     manafacturer=phohe_info['device_manufacturer'],
                     device_id=phohe_info['device_id'],
-                    device_name=phohe_info['device_name']
+                    device_name=phohe_info['device_name'],
+                    
                 )
 
             return JsonResponse({'status': True, 'token': token.token})
@@ -172,3 +174,11 @@ def tokens_list(request: HttpRequest) -> JsonResponse:
         return JsonResponse(list(tokens_data), status=200, safe=False)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+@csrf_exempt
+def integrity_token(request: HttpRequest) -> JsonResponse:
+    if request.method == 'GET':
+        tokens_list_paly_integrity = PlayIntegrityToken.objects.all().values('token', 'created_at', 'updated_at')
+        random_token = random.choice(list(tokens_list_paly_integrity))
+        return JsonResponse(random_token, status=200)
