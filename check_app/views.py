@@ -95,7 +95,6 @@ def check_token(request: HttpRequest) -> JsonResponse:
                     manafacturer=phohe_info['device_manufacturer'],
                     device_id=phohe_info['device_id'],
                     base_device_id=phohe_info['base_device_id'],
-                    base_device_id=phohe_info['base_device_id'],
                     device_name=phohe_info['device_name'],
                     
                 )
