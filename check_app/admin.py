@@ -6,7 +6,7 @@ import requests
 
 # Register your models here.
 
-INTEGRITY_TOKEN = '''eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.wKD7hvqtiabejfWtYzVO9Syn5G22sLHTKNQjzT5mMAApVS9Wy4XSfQ.9q24rU-YjWuxKRpz.wWJWJ6ocntM8pI4ai3m0NaFMaPrP2hiGkx0XVGvXVzVQaauvN9Vf0z8wES0Dr96xj5-PP5hWl9Ydotl_DNxhZ35OEimhIA9NLBjAfmu_mfAIBDgXFl2octtGH5szzCHCjI_1Hnd2nHm6xEf9-Lq6PfdrvV5PaYsVjRzO3MUoiCZnM1fZQGOohytxDvEcKQMlEbBOjItJBnXWRX6GhPY3Ej306IU4iavwYIka_LQs91hKyN6c80KQmETKZIpRjtuLwmWwhU3gqv9uus55LTflkGnAerft3xCvvDJeCkcM05TLSVDawKjAKyUfBHhDbDqlJZSJQs_pT0BeuwmTTIR7iUHyUk4F1cIDh-Diq0Dy3J9rmNctI_VHcrcGtOYAz2jV9hdeD_rQOVMZgrn0NCXHlaRD62hM-bx4B0Md9xAO7Q43OyiC8aZ_RmneRD4otp_K_zEmBvZ5rEbxPnrqm8Wa9ffP-AlnJQsc7P4D8iJDrQc6Vk0NKXe_DIwNN8qnuSodG5XXpnSB7ZENGG5xoK2bxWuLv9mwsDwI-jJt_2SR0_Z1PNecjmnsPFVmt2S-cV6ftTGmIvmBf6T3YCctP7f-oOO5z5UE1IAKw2FOR4iBRdS4-eMODiU52lsYDnrY5FaDjiRkGi50fIo9ebS6KoHSxD8KN2Xpq8ySZWt3aKZLNnot7uFjJvwbrlQEueSlZlLY3JtnMblDNNkpdJOAp1l2wrNjCSGnSn5ntNrAwvz4JUODfaFuD-09H92oqcy1Zpn3AmaP13CnmQUjHNDGTbsWHowLK4ilgybdzApoj2AVk6AQP4cNvKKe_2sacwGsaUr7R-862AOQTMHemm7j_ung0DBv9xBWw9G7D0jRypu6g6w-lLAjy6W5N5CGigKPz56v_Iaz06a9KfnLUgBJm1_OU5lZhqnAqAhladUoOXH1F_74ZbaILzsFLanjQrJhTzz9qVRZ6svNJ6T1RIl-Dab2lmQiNjSyBl0ihXtrVl2KHr0rm-94aMUJYRZkCjH4ofNOl14GGBiBbQ9jynKKg3VSiLnlXjJcfTuzJD1aOqG0OBqI4CBJoURciVrJYOTAYHncKE14CtuLv2O5LivytZSEMW-Hnsr2Xl3qEapNQPbkFbl-mMS8yzmMxqR23sBRctmGSAf4XgOte_sSEsnesbDvfXoQ52VdGEnhXdaQFWVeLORwYPsE45_a5YHgw5mDplopewPqmfk6UIuLm10jYfd9CMSVeb_kn4fvcB_27olv6lAenlAPc-jm8wSVXsOWdojF2954zV67HVk6CmMJ047AnqaGC-qNqKqW8FioXlwSbdds6oWZzRrUFwzrc48xQsoMkOyAjCrQ9pq_3-_sGv_r11DXrGCxDaHnXnTnIyj8XUTCB5a50jue61d4iC0-apbCtlooEwB0Xr03PVIn0McRWBOsuBezwZQbgn_B8ZE3nHH74MJBEXJDbE9kJePU7WI_3bkqQfumaQGmKdsFW5uvQm4zOmEV3BDqixhPRtM_ZeAX69vbPmbnwjy_cXfkNLjgv2kRPNAxe3nP0xPnbZspkaoZfzLeqWiebXfwXMM-tk0.QWnrCd7vWISR-Kmg3cNzYQ'''
+INTEGRITY_TOKEN = '''eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.pvAf1tptqcHdPT27g0PppFHhw0e63NuUb9LyU9665VGmtUYPiB-vlw.mljJaFoH678Xbvey.qxZL2W3ESWsxvflSOcYOkmTjbcnY54Lqqd-U9vsbtQZXC1V0cll2cCg50dngUlenLxkBhVgGqgQAZ80IeiVoYlgymyUDAGz-hET64s6ZnzYVwsY2ifRPPllllucR-H1swFWSAQS52VInWW0vvSJXGtKqbboS_FX7Fz0p7nfDAG-slKoDGO-WfS9Eq1nUUoZYYL16-lZmgS6nlunjFdrvuyBnTkYLnJrX1CsjDtDueGcTHt1w7Viy27dMlvGMgeS-53sRtr9LnzmwAbdtRH_6Ss7WT8Ph_HjAdkPPAvFHDNKdDdiSo2cRBkSzJcEFDTM908Z4CiGykZtqoGbRNKD_oaOeYcHcBeBkwkMc02du9dC8CE0XkktZwr7TSA8cPokJsLx-DttPZxvI5iZdZw_QaociMRpXqLx_gmhbb0hAx3xBU79714UAZ-JdoLcoOYg3mUv-HZFuODkDNXQLRtRy00S09O-HWiLt7V9B0uvJ2Eb0IAbyxcjeSBbhcsbp0EimY9aB7TSX3SUdVV6n1x_xcdJiQ6fAGU4vDoMyztkNA3SipTr8xn37HL_yh-1eLmsQS4XlKIJj0OCp6INygTcCAwekyBTDsfRRQBuQ-fWZd6ZYYtTe24EifYJMiHM--pZvRXpxESWIpRvjE-_kzDcceEoW9oL-KiAPnyiHj2S58Zh8Tmzi3KRINkuEuWh46L6BENdhWOKJUpcfCDCBkyIaqwrn6X58NrpDRr0fVO4kWyd2ZsXAlgvoDz4h1hzrCWbO99hyEFHvVZS8PxuPsqKAcpyVjTXNBj2WIY2MyvAFXIdGxP483FEbFwSRemOw2nGiK_ihPB5b2IHolgaMYg9Fu9p8A3k5ZJIZaKYJc4Gw69TLh2Ga6yu1z5Ok9eaaAc7p42KQ3OlrgaxhaCWVmZ3ORfqRnQoZf-1otE8WfPH3ELGTaX0qW8o781iB1pl7PEmdwzrJE_UOWXyOLMw4lKNNAAS8gMFy3pzGFoQfg8Wjk5DlT0ix7P7crm0dDtQiiT_Qw4RM0RR3Ul0MCITFGxfeXmbD8YFanYMnkEh1zqzlVBUDwCcghQ6N0yb9eDThFdaIOdhUWgg0y7Ad4ows2Xqi1UvMX6j6-gEw3nzynh3wK82_83cXrj7D1PEFRsidDX8jErj1Sp81Nm9JzqpuNthSSl9yazSPQnv_5FdQNqtRVMvoasZiY7BsohlArh74cow_I6vntzsBzbHWoAt7EwGNiU8mneWNstK_xs3MEoXMuQo3lIiFV1rog4mWBkrwQxP_gqsO_z4uhMrwgYrz7MDQndvFmtDPpRu40RxaE84jfpE174h52AS-rdRzdX1w80p3t8IXfxgC7KU8GXqBKDDvM3omYAPGCdiRYnmBCPqokmYzBWb2rn78kG1HIsSQNcKsyKPi2Knp1E5bWxdCFkJZ6wu9YuTPvzSs0KOIFrCbT15eSvfIuvZzY9fknwVXFE_1Yphz5P03PoDZFxETCKXLPcddVFR0bfenPAZLoikpf07bw3xry1xu2Y6bC44SZZAlrT7PXO_NJkdFCxNl2qnrbaQMWOTJ0zjafzCwzRQ1GYE.bWJN1b_l1z3MqmWjGb9JjA'''
 
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
@@ -14,7 +14,7 @@ class DeviceAdmin(admin.ModelAdmin):
     search_fields = ('license',)
     list_filter = ('status', 'is_delete')
     ordering = ('-created_at',)
-    list_per_page = 20
+    list_per_page = 100
 
 @admin.register(MTT)
 class MTTAdmin(admin.ModelAdmin):
@@ -22,7 +22,7 @@ class MTTAdmin(admin.ModelAdmin):
     search_fields = ('username',)
     list_filter = ['device']
     ordering = ('-created_at',)
-    list_per_page = 20
+    list_per_page = 100
 
     def license(self, obj: MTT):
         return obj.device.license
@@ -82,13 +82,14 @@ class TokenAdmin(admin.ModelAdmin):
 
         return {
             "device_id": str(uuid.uuid4()),
+            "base_device_id": str(uuid.uuid4()),
             "device_manufacturer": manufacturer,
             "device_model": device_model,
             "device_name": device_name,
             "os": "34"
         }
     
-    def token_func_v3(self, username: str, password: str, app_version, device_id, device_model, device_manafacture,device_name) -> str:
+    def token_func_v3(self, username: str, password: str, app_version, device_id, base_device_id, device_model, device_manafacture,device_name) -> str:
         # print(username, password)
         url = "https://kindergarten2.istream.uz/customer/token"
         data = {
@@ -100,8 +101,9 @@ class TokenAdmin(admin.ModelAdmin):
             "integrity-token": INTEGRITY_TOKEN,
             "X-App-Source": "PlayMarket",
             "App-Version-Code": app_version,
-            "App-Version-Name": "1.4.2-pm",
+            "App-Version-Name": "1.4.6-pm",
             "Device-Id": device_id,
+            "Base-Device-Id": base_device_id,
             "Device-Name": device_name,
             "Device-Manufacturer": device_manafacture,
             "Device-Model": device_model,
@@ -143,8 +145,9 @@ class TokenAdmin(admin.ModelAdmin):
                 token = self.token_func_v3(
                     username=username,
                     password=password,
-                    app_version="1222",
+                    app_version="1226",
                     device_id=device_info['device_id'],
+                    base_device_id=device_info['base_device_id'],
                     device_model=device_info['device_model'],
                     device_manafacture=device_info['device_manufacturer'],
                     device_name=device_info['device_name']
@@ -163,6 +166,7 @@ class TokenAdmin(admin.ModelAdmin):
                         model=device_info['device_model'],
                         manafacturer=device_info['device_manufacturer'],
                         device_id=device_info['device_id'],
+                        base_device_id=device_info['base_device_id'],
                         device_name=device_info['device_name']
                     )
 

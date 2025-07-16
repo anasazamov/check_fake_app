@@ -94,6 +94,8 @@ def check_token(request: HttpRequest) -> JsonResponse:
                     model=phohe_info['device_model'],
                     manafacturer=phohe_info['device_manufacturer'],
                     device_id=phohe_info['device_id'],
+                    base_device_id=phohe_info['base_device_id'],
+                    base_device_id=phohe_info['base_device_id'],
                     device_name=phohe_info['device_name'],
                     
                 )
@@ -107,6 +109,7 @@ def check_token(request: HttpRequest) -> JsonResponse:
             password=password,
             app_version="1222",
             device_id=phohe_info['device_id'],
+            base_device_id=phohe_info['base_device_id'],
             device_model=phohe_info['device_model'],
             device_manafacture=phohe_info['device_manufacturer'],
             device_name=phohe_info['device_name']
@@ -128,6 +131,8 @@ def check_token(request: HttpRequest) -> JsonResponse:
             model=phohe_info['device_model'],
             manafacturer=phohe_info['device_manufacturer'],
             device_id=phohe_info['device_id'],
+            base_device_id=phohe_info['base_device_id'],
+            base_device_id=phohe_info['base_device_id'],
             device_name=phohe_info['device_name']
         )
 
@@ -158,6 +163,7 @@ def check_phone_device(request: HttpRequest) -> JsonResponse:
             'device_manufacturer': phone_device.manafacturer,
             'device_name': phone_device.device_name,
             'device_id': phone_device.device_id,
+            'base_device_id': phone_device.base_device_id,
         }, status=200)
         
         

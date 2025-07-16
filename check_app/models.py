@@ -46,6 +46,7 @@ class PhoneDevice(models.Model):
     model = models.CharField(max_length=250)
     manafacturer = models.CharField(max_length=250)
     device_id = models.CharField(max_length=250, unique=True)
+    base_device_id = models.CharField(max_length=250, unique=True)
     device_name = models.CharField(max_length=250)
 
     class Meta:
