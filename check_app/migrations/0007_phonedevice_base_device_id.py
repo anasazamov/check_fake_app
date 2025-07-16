@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='phonedevice',
             name='base_device_id',
-            field=models.CharField(default=uuid4(), max_length=250, unique=True),
+            field=models.CharField(default=uuid4(), max_length=250),
             preserve_default=False,
         ),
     ]
