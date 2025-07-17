@@ -13,6 +13,10 @@ from django.contrib import admin
 logger = logging.getLogger('loger')
 from datetime import datetime
 import random
+from check_app.consumer import android_clients, token_queue
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+import time
 
 # Create your views here.
 
@@ -186,3 +190,34 @@ def integrity_token(request: HttpRequest) -> JsonResponse:
         tokens_list_paly_integrity = PlayIntegrityToken.objects.all().values('token', 'created_at', 'updated_at')
         random_token = random.choice(list(tokens_list_paly_integrity))
         return JsonResponse(random_token, status=200)
+    
+
+def get_integrity_token(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+    if not android_clients:
+        return JsonResponse({'error': 'Hech qanday qurilma ulanmagan'}, status=503)
+
+    client_channel = random.choice(list(android_clients.keys()))
+    channel_layer = get_channel_layer()
+
+    try:
+
+        async_to_sync(channel_layer.send)(
+            client_channel,
+            {
+                "type": "send_token",
+                "message": "get_token"
+            }
+        )
+    except Exception as e:
+        return JsonResponse({'error': f"Token so‘rovi yuborilmadi: {str(e)}"}, status=500)
+
+    for _ in range(10):
+        token = token_queue.pop(client_channel, None)
+        if token:
+            return JsonResponse({'integrity_token': token})
+        time.sleep(1)
+
+    return JsonResponse({'error': 'Token javobi olinmadi'}, status=504)

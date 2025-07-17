@@ -24,4 +24,6 @@ COPY . .
 
 # 7. Konteyner ishga tushganda bajariladigan buyruq:
 #    Django serverni 0.0.0.0:8000 da ishga tushiramiz
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8010"]
+CMD ["daphne", "-p", "8010", "core.asgi:application"]
+
+   

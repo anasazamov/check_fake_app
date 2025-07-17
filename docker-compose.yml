@@ -8,7 +8,7 @@ services:
     container_name: django_app_web
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8010"
+             daphne -p 8010 core.asgi:application"
     ports:
       - "8010:8010"
     volumes:
