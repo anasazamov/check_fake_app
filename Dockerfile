@@ -20,7 +20,7 @@ COPY . .
 
 # 6. Django statik fayllar uchun papka (agar kerak bo‘lsa)
 #    (Masalan, collectstatic ishlashini xohlasangiz, keyinroq ishlatishingiz mumkin)
-# RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 # 7. Konteyner ishga tushganda bajariladigan buyruq:
 #    Django serverni 0.0.0.0:8000 da ishga tushiramiz
